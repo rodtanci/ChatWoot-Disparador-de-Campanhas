@@ -21,11 +21,11 @@ Suporte para múltiplos formatos de imagem (JPEG e PNG).
 Defina um limite diário de envios para cada empresa.
 Evite sobrecarregar os a utilização da VPS com o alto fluxo de mensagens.
 
-5. ⏳ Temporizador Randômico entre os Envios
+⏳ Temporizador Randômico entre os Envios
 Adicione um temporizador randômico entre os envios para evitar detecção como spam e bloquear o numero.
 (Lembrando que isso não é uma garantia que voce não possa perder seu numero e sim uma solução para reduzir os riscos.)
 
-🔄 Contador de Envios e Falhas
+🔄 Contador de Envios e Falha
 Acompanhe o número total de mensagens enviadas e falhas.
 
 🚫 Mensagem de Excesso de Limite Diário
