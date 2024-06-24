@@ -1,4 +1,4 @@
-# 🚀 Solução de Disparador de Campanhas via WhatsApp 🚀
+# 🚀 Disparador de Campanhas via WhatsApp 🚀
 
 ## 🌟 Introdução 🌟
 
@@ -108,4 +108,15 @@ Antes de iniciar, certifique-se de que você já tem instalado:
      ADD COLUMN falhou INTEGER NOT NULL DEFAULT 0;
      ```
 
-Agora que as colunas foram adicionadas ao banco de dados, podemos prosseguir para os próximos passos da automação!
+### Passo 3: Importar Workflows no n8n
+
+1. **Acesse o n8n**: Faça login na sua instância do n8n.
+2. **Adicionar Novo Workflow**:
+   - Clique em "Add Workflow".
+3. **Importar Workflow**:
+   - Clique nos três pontinhos no canto superior direito.
+   - Selecione "Import from File".
+4. **Importar o Fluxo Disparador**:
+   - Importe o arquivo de workflow disparador.json.
+5. **Importar o Fluxo Reset-Limite-Campanhas**:
+   - Repita os passos acima e importe o rest-limite-campanha.json
