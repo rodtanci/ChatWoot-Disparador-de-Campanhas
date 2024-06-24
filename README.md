@@ -1,4 +1,4 @@
-# 🚀 Solução de Disparador de Campanhas via WhatsApp 🚀
+# 🚀 Disparador de Campanhas via WhatsApp 🚀
 
 ## 🌟 Introdução 🌟
 
