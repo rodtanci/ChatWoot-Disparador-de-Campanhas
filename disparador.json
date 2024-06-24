@@ -1,0 +1,1401 @@
+{
+  "name": "Disparador 1.0",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "e5541023-ccaf-40fb-9806-4144ec8f2ab2",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2180,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "dateTime": [
+            {
+              "value1": "={{ $json.newDate }}",
+              "operation": "before",
+              "value2": "={{ $now }}"
+            }
+          ]
+        }
+      },
+      "id": "55c886d7-6a05-40e4-943d-6c0044a0d0b0",
+      "name": "Horario",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -1460,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# Buscando Campanhas",
+        "height": 456.3958547081602,
+        "width": 1221.218469617133
+      },
+      "id": "de3bbaed-e759-45d0-b1f9-b7ea334e80c5",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2231.8637163263666,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# Disparador de Campanha para ChatWoot\n## Evolution API\n\n\nv 1.0.0",
+        "height": 163.30528430133387,
+        "width": 847.4993167412657,
+        "color": 4
+      },
+      "id": "13e60f45-6fb1-481b-9e9a-c966f23177c0",
+      "name": "Sticky Note10",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2220,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "subtractFromDate",
+        "magnitude": "={{ $json.scheduled_at }}",
+        "timeUnit": "hours",
+        "duration": 3,
+        "options": {
+          "includeInputFields": true
+        }
+      },
+      "id": "d47902b1-3ef3-4b27-80a5-acff014c5040",
+      "name": "Altera fuso horário",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        -1640,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "chatwoot_url",
+              "value": "https://suaurldochatwootaqui.com.br"
+            },
+            {
+              "name": "evolution_url",
+              "value": "https://suaurldaevoaqui.com.br"
+            },
+            {
+              "name": "global_api_key",
+              "value": "global api key da evolution"
+            },
+            {
+              "name": "instance_name",
+              "value": "=Nome da caixa da Evo api"
+            },
+            {
+              "name": "chatwoot_token",
+              "value": "=token da tenancia do chatwoot"
+            }
+          ],
+          "number": [
+            {
+              "name": "chatwoot_account_id",
+              "value": "=id da tenancia"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f039539b-5b9a-44c2-907b-c7201840d1ef",
+      "name": "Info_Base",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -2000,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# Busca contatos / Envia campanha\n",
+        "height": 580.894584655091,
+        "width": 4024.1965405967862,
+        "color": 3
+      },
+      "id": "b60b6cc3-d4df-4099-9b90-efbdb21f5c94",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -166.29942964894326,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "select * from campaigns c  where campaign_type = 1  and status_envia = 0 LIMIT 1",
+        "additionalFields": {}
+      },
+      "id": "2d8af245-ab7d-45d9-aeb0-2b74278645ec",
+      "name": "Buscar campanhas",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [
+        -1820,
+        1040
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3c11e651-683f-4310-b31c-ac88decb3d66",
+      "name": "Merge6",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        8180,
+        520
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "83b38f63-8e55-47fe-aa08-bf81631c9861",
+      "name": "Repetir ação",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        3680,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Este exemplo gera um tempo de espera aleatório entre 10 e 60 segundos\nconst minWait = 8; // Tempo mínimo de espera em segundos\nconst maxWait = 15; // Tempo máximo de espera em segundos\nconst randomWaitTime = Math.floor(Math.random() * (maxWait - minWait + 1)) + minWait;\n\nreturn [\n  {\n    json: {\n      waitTime: randomWaitTime\n    }\n  }\n];\n"
+      },
+      "id": "39a95858-f4ec-44c7-a2a1-e866cda253f6",
+      "name": "Time Randon1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2160,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "amount": "={{ $json.waitTime }}"
+      },
+      "id": "b5eaf87e-9207-4db1-b8f1-186d706544bd",
+      "name": "Tempo de espera1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2340,
+        1080
+      ],
+      "webhookId": "03dba265-ef4f-4f0d-83f9-32cb29f1257f"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  if (item.json.phone_number) {\n    item.json.phone_number = item.json.phone_number.substring(1);\n  }\n  return item;\n});"
+      },
+      "id": "c8d22dbe-3d00-425d-83af-7b252602e603",
+      "name": "Limpa numero1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1800,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT c.*\nFROM contacts c\nJOIN taggings tg ON c.id = tg.taggable_id\nWHERE tg.tag_id = {{ $json.etiqueta }};",
+        "options": {}
+      },
+      "id": "0946aec7-209e-404e-b42d-024ea8b15433",
+      "name": "Busca contatos",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [
+        -120,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Buscar campanhas').item.json.campaign_type }}",
+              "value2": "={{ 1 }}"
+            }
+          ]
+        }
+      },
+      "id": "a929111f-d896-4645-bc1d-7204b8236cf3",
+      "name": "IF6",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -840,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "audience",
+        "include": "allOtherFields",
+        "options": {}
+      },
+      "id": "d5f84df8-9266-4810-8e1a-73097012a533",
+      "name": "Item Lists1",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        -620,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# Trata mensagem",
+        "height": 456.8892799239013,
+        "width": 728.217926985971,
+        "color": 2
+      },
+      "id": "c636be1e-e240-4e2f-a7e0-e24b2864fb54",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -940,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "de68590b-f364-42ca-96cb-f7a09d9c6395",
+              "name": "numberdispara",
+              "value": "={{ $json.phone_number }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ca8ca461-1e8f-4930-991a-8989b037d29e",
+      "name": "numero editado1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        1980,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "eaed5ec7-1965-410f-afaf-05ca1b62f56a",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        60,
+        1040
+      ],
+      "executeOnce": false,
+      "alwaysOutputData": false,
+      "retryOnFail": false,
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "d0205698-dcfd-4d3c-b6e3-dfd7209035c3",
+              "leftValue": "={{ $json.limite_disparo }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "c9a25485-24ec-4525-bbf0-8b0454cb9eb5",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT limite_disparo\nFROM accounts\nWHERE id ={{ $('Info_Base').item.json.chatwoot_account_id }};",
+        "options": {
+          "queryReplacement": "={{ $('Info_Base').item.json.chatwoot_account_id }}"
+        }
+      },
+      "id": "63318453-74b0-4bb4-89b2-dc7809c4a2ca",
+      "name": "Conta Disparo",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [
+        1200,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Limita disparo Diario",
+        "height": 264.9413594226407,
+        "width": 653.3075078799386,
+        "color": 4
+      },
+      "id": "1a3086cc-bf83-4c19-8965-16ccaa0a93e0",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        860,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Dispara Mensagem",
+        "height": 260.06359305339754,
+        "width": 911.0441675732073,
+        "color": 4
+      },
+      "id": "611aedf2-52c7-4bba-8f8f-32f97d61ba26",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT limite_disparo\nFROM accounts\nWHERE id ={{ $('Info_Base').item.json.chatwoot_account_id }};",
+        "options": {
+          "queryReplacement": "="
+        }
+      },
+      "id": "818e7c81-9e65-4028-b299-df2569741a01",
+      "name": "Limitador",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [
+        880,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Contabiliza falhas",
+        "height": 211.13093154244973,
+        "width": 374.41687218580967,
+        "color": 2
+      },
+      "id": "630366a2-3360-439b-9d21-207bd1dad98c",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3260,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Contabiliza envios",
+        "height": 215.09474919455494,
+        "width": 382.34450749002,
+        "color": 2
+      },
+      "id": "a5b377f0-760a-48aa-bc8f-4f4a02d2db4c",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3260,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT falhou\nFROM campaigns\nWHERE id = {{ $('IF6').item.json.id }};",
+        "options": {
+          "queryReplacement": "="
+        }
+      },
+      "id": "3fda323e-df1d-4190-99ba-cffd5de3ac79",
+      "name": "Busca falhas",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [
+        3300,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE accounts\nSET limite_disparo ={{ $json.limite_disparo -1 }}\nWHERE id ={{ $('Info_Base').item.json.chatwoot_account_id }};",
+        "options": {}
+      },
+      "id": "4c7860ed-34b2-40c6-86dd-77041fe638fe",
+      "name": "Subtrair",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [
+        1040,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE campaigns\nSET falhou = {{ $json.falhou +1 }}\nWHERE id = {{ $('IF6').item.json.id }};",
+        "options": {}
+      },
+      "id": "2dae8844-1abc-42a4-88b8-90fb252677cd",
+      "name": "Adiciona falhas",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [
+        3460,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT enviou\nFROM campaigns\nWHERE id = {{ $('IF6').item.json.id }};",
+        "options": {}
+      },
+      "id": "5e12488b-36d9-4966-a127-179365b9092b",
+      "name": "Busca envios",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [
+        3300,
+        1140
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cbb23691-dfc9-413f-b996-ba0515b0a902",
+              "name": "etiqueta",
+              "value": "={{ $('Buscar campanhas').item.json.audience[0].id }}",
+              "type": "number"
+            },
+            {
+              "id": "7a194f32-e774-4d48-94ed-1e2c9b9fd025",
+              "name": "msg.title",
+              "value": "={{ $('Buscar campanhas').item.json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "4dc32df3-cc5a-4a9b-8dcd-2d3f8a50a6fd",
+              "name": "msg.message",
+              "value": "={{ $('Buscar campanhas').item.json.message }}",
+              "type": "string"
+            },
+            {
+              "id": "3b2fef42-7655-4ebc-ac93-1a25f77cbec1",
+              "name": "anexo",
+              "value": "={{ $('IF6').item.json.message.split('&anexo=')[1].split('&')[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "66e5ac5e-5cef-4737-81d8-9457f8fb8536",
+              "name": "nomecontato",
+              "value": "={{ $json.message.match(/&nome/)[0] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b6ea3768-9c0c-4719-aff5-f798ae48c30c",
+      "name": "Campanha",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        -420,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# Relatorio da campanha",
+        "height": 272.1581724156961,
+        "width": 500.60281237764696
+      },
+      "id": "4fec3975-a7f9-4d01-b366-1ee13c038e08",
+      "name": "Sticky Note8",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        460,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT falhou, enviou\nFROM campaigns\nWHERE id = {{ $('IF6').item.json.id }};",
+        "options": {
+          "queryReplacement": "="
+        }
+      },
+      "id": "5c47b2ed-4cfe-483f-96c2-84abefa170c0",
+      "name": "Resumo relatorio",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [
+        600,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Info_Base').item.json.evolution_url }}/message/sendMedia/{{ $('Info_Base').item.json.instance_name }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "apikey",
+              "value": "={{ $('Info_Base').item.json.global_api_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"number\":\"{{ $('numero editado1').item.json.numberdispara }}@s.whatsapp.net\",\"options\":{\"delay\":3000,\"presence\":\"composing\"},\"mediaMessage\":{\"mediatype\":\"image\",\"caption\":\"{{ $json.mensagem }}\",\"media\":\"{{ $json[\"anexo\"] }}\"}}",
+        "options": {}
+      },
+      "id": "7122a3ba-3d33-4dbb-9120-05c81f1d2de5",
+      "name": "Envia msg2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3060,
+        1140
+      ],
+      "retryOnFail": false,
+      "maxTries": 2,
+      "waitBetweenTries": 2000,
+      "executeOnce": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Info_Base').item.json.evolution_url }}/message/sendText/{{ $('Info_Base').item.json.instance_name }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "apikey",
+              "value": "={{ $('Info_Base').item.json.global_api_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"number\":\"{{ $('numero editado1').item.json.numberdispara }}@s.whatsapp.net\",\"options\":{\"delay\":3000,\"presence\":\"composing\"},\"textMessage\":{\"text\":\"{{ $('Edita Mensagem').item.json.var_msg }}\"}}  ",
+        "options": {}
+      },
+      "id": "5097496d-ff68-4e98-bbfa-f4e00f179219",
+      "name": "Envia msg",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2980,
+        860
+      ],
+      "retryOnFail": false,
+      "maxTries": 2,
+      "waitBetweenTries": 2000,
+      "executeOnce": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "content": "# Limite exedido",
+        "height": 272.1581724156961,
+        "width": 421.4323377312729
+      },
+      "id": "85ee1933-16a4-4ac1-b1e0-67b4fafe5fc4",
+      "name": "Sticky Note9",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Info_Base').item.json.evolution_url }}/message/sendText/{{ $('Info_Base').item.json.instance_name }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "apikey",
+              "value": "={{ $('Info_Base').item.json.global_api_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"number\":\"5511988884444@s.whatsapp.net\",\"options\":{\"delay\":3000,\"presence\":\"composing\"},\"textMessage\":{\"text\":\"📢 Campanha *{{ $('Buscar campanhas').item.json.title }}* enviada com sucesso! 📢\\n\\n✔️ Total de envios: {{ $json[\"enviou\"] }}\\n❌ Número de falhas: {{ $json[\"falhou\"] }}\\n\\nObrigado por utilizar nossos serviços!\"}}",
+        "options": {}
+      },
+      "id": "392dbaaa-317a-41b9-b9fd-023e2e6549dc",
+      "name": "Envia relatorio",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        760,
+        560
+      ],
+      "retryOnFail": false,
+      "maxTries": 2,
+      "waitBetweenTries": 2000,
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT falhou, enviou\nFROM campaigns\nWHERE id = {{ $('IF6').item.json.id }};",
+        "options": {
+          "queryReplacement": "="
+        }
+      },
+      "id": "7f31dcc4-e879-459e-8971-12263d5451fa",
+      "name": "Resumo relatorio1",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [
+        1120,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Info_Base').item.json.evolution_url }}/message/sendText/{{ $('Info_Base').item.json.instance_name }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "apikey",
+              "value": "={{ $('Info_Base').item.json.global_api_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"number\":\"5511988884444@s.whatsapp.net\",\"options\":{\"delay\":3000,\"presence\":\"composing\"},\"textMessage\":{\"text\":\"⚠️ *Atenção!* Algumas mensagens da campanha podem não ter sido enviadas. ⚠️\\n\\n✔️ Total de envios: {{ $json[\"enviou\"] }}\\n❌ Número de falhas: {{ $json[\"falhou\"] }}\\n\\nO limite de disparos diários foi excedido. Por favor, verifique os envios ou entre em contato com o suporte para mais informações.\\n\\nObrigado pela compreensão!\"}}",
+        "options": {}
+      },
+      "id": "9133ce4c-2401-4d66-bfdd-b89f27c7fa5b",
+      "name": "Envia relatorio1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1280,
+        560
+      ],
+      "retryOnFail": false,
+      "maxTries": 2,
+      "waitBetweenTries": 2000,
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=UPDATE campaigns SET status_envia = 1 WHERE id = {{ $json.id }}",
+        "additionalFields": {}
+      },
+      "id": "cf83eec6-e3c7-49d9-bb6e-8a37fdbdd11c",
+      "name": "Update Campanha",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [
+        -1160,
+        900
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fbca67eb-842d-47de-a989-c1879a8141bc",
+              "name": "phone_number",
+              "value": "={{ $('Loop Over Items').item.json.phone_number }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "657c60a2-65b9-40e2-8bf9-97af4dcdef6b",
+      "name": "contato1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        1640,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE campaigns\nSET enviou = {{ $json.enviou +1 }}\nWHERE id = {{ $('IF6').item.json.id }};",
+        "options": {}
+      },
+      "id": "f220f8d3-c698-4419-a284-58752cc3cdd5",
+      "name": "Adiciona envios",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [
+        3460,
+        1140
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Sem Anexo",
+        "height": 199.63817652105178,
+        "width": 313.99126283929667
+      },
+      "id": "70d94614-303b-4ef7-a171-7a8365baf049",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2880,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Com Anexo",
+        "height": 216.81471968017428,
+        "width": 313.99126283929667
+      },
+      "id": "39d8957c-cb09-499e-9382-7a7088f7518e",
+      "name": "Sticky Note11",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2880,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "daf39b75-a974-426f-a6f7-197497d2fa94",
+              "leftValue": "={{ $('Campanha').item.json.anexo }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "07eae5ff-51c2-49fa-946e-dee18d11fe04",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2560,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "ebbe2797-49a1-47e7-9c54-161ff02dfa49",
+              "leftValue": "={{ $('Campanha').item.json.nomecontato }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b6804408-e2a2-4bfb-a398-a8df0edd6897",
+      "name": "If2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        260,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a588a036-88bc-4bc2-aefa-a2c0b9af2000",
+              "name": "var_msg",
+              "value": "={{ $('IF6').item.json.message.split('&nome').join($json.name) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fad04b30-333a-4ef7-bf39-f4d7211b3dcb",
+      "name": "Edita Mensagem",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        520,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "mensagem",
+              "stringValue": "={{ $('Edita Mensagem').item.json.var_msg.split(\"&anexo=\")[0].replace(/\\n/g, \"\\\\n\") }}"
+            },
+            {
+              "name": "titulo",
+              "stringValue": "={{ $('Campanha').item.json.msg.title }}"
+            },
+            {
+              "name": "anexo",
+              "stringValue": "={{ $('Campanha').item.json.anexo }}"
+            }
+          ]
+        },
+        "options": {
+          "includeBinary": true
+        }
+      },
+      "id": "3167bce1-ed34-47f0-a964-393064b910de",
+      "name": "Edit Fields2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        2920,
+        1140
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Info_Base",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Horario": {
+      "main": [
+        [
+          {
+            "node": "Update Campanha",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "IF6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Altera fuso horário": {
+      "main": [
+        [
+          {
+            "node": "Horario",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Info_Base": {
+      "main": [
+        [
+          {
+            "node": "Buscar campanhas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar campanhas": {
+      "main": [
+        [
+          {
+            "node": "Altera fuso horário",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Repetir ação": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Time Randon1": {
+      "main": [
+        [
+          {
+            "node": "Tempo de espera1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tempo de espera1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limpa numero1": {
+      "main": [
+        [
+          {
+            "node": "numero editado1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Busca contatos": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF6": {
+      "main": [
+        [
+          {
+            "node": "Item Lists1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists1": {
+      "main": [
+        [
+          {
+            "node": "Campanha",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "numero editado1": {
+      "main": [
+        [
+          {
+            "node": "Time Randon1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Resumo relatorio",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "contato1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Resumo relatorio1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Conta Disparo": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limitador": {
+      "main": [
+        [
+          {
+            "node": "Subtrair",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Busca falhas": {
+      "main": [
+        [
+          {
+            "node": "Adiciona falhas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Subtrair": {
+      "main": [
+        [
+          {
+            "node": "Conta Disparo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Adiciona falhas": {
+      "main": [
+        [
+          {
+            "node": "Repetir ação",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Busca envios": {
+      "main": [
+        [
+          {
+            "node": "Adiciona envios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Campanha": {
+      "main": [
+        [
+          {
+            "node": "Busca contatos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resumo relatorio": {
+      "main": [
+        [
+          {
+            "node": "Envia relatorio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envia msg2": {
+      "main": [
+        [
+          {
+            "node": "Busca envios",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Busca falhas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envia msg": {
+      "main": [
+        [
+          {
+            "node": "Busca envios",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Busca falhas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resumo relatorio1": {
+      "main": [
+        [
+          {
+            "node": "Envia relatorio1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "contato1": {
+      "main": [
+        [
+          {
+            "node": "Limpa numero1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Adiciona envios": {
+      "main": [
+        [
+          {
+            "node": "Repetir ação",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Envia msg",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Edita Mensagem",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edita Mensagem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edita Mensagem": {
+      "main": [
+        [
+          {
+            "node": "Limitador",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Envia msg2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "da3e012a-a2b1-4425-8c74-385866433cfb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "33738330930e3881dd5571eca013f36ddf8aab20e4ea5c1f2ebaf4a2b4668ac6"
+  },
+  "id": "S0BXRPffHorRWRb8",
+  "tags": []
+}
