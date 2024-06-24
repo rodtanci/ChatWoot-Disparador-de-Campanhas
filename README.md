@@ -186,4 +186,4 @@ Quem quiser apoiar o projeto com dicas de melhorias e reportar alguma falha pode
 
 _https://chat.whatsapp.com/H2as2v9yHre8U2gjNaCWRc_
 
-Caso alguém queira contribuir de forma monetária, o chave PIX aleatoria: **a0db6d5c-625b-4846-ba9a-3e06ccc6b1d4**.
+Caso alguém queira contribuir de forma monetária, o chave PIX aleatoria: **a0db6d5c-625b-4846-ba9a-3e06ccc6b1d4**
