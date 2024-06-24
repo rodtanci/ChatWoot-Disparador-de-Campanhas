@@ -119,4 +119,22 @@ Antes de iniciar, certifique-se de que você já tem instalado:
 4. **Importar o Fluxo Disparador**:
    - Importe o arquivo de workflow disparador.json.
 5. **Importar o Fluxo Reset-Limite-Campanhas**:
-   - Repita os passos acima e importe o rest-limite-campanha.json
+   - Repita os passos acima e importe o reset-limite-campanha.json
+
+### Passo 4: Editar o Workflow Disparador no n8n
+
+1. **Acesse o Workflow Disparador**: No n8n, abra o workflow Disparador que você importou.
+2. **Editar Nó Info_Base**:
+   - Preencha os seguintes campos com suas informações:
+     - **URL do ChatWoot**
+     - **URL da Evolution API**
+     - **Global API KEY da Evolution API**
+     - **Nome da Caixa de Entrada cadastrada na Evolution API que vai disparar as mensagens**
+     - **Token de acesso da conta do ChatWoot**
+     - **ID da conta do ChatWoot**
+3. **Conectar Nós do Postgres ao Banco de Dados do ChatWoot**:
+   - Conecte todos os nós do Postgres ao banco de dados do ChatWoot, garantindo que as informações fluam corretamente entre os sistemas.
+4. **Adicionar Seu Telefone para Receber Resumos**:
+   - No nó "Resumo relatorio", adicione o seu telefone para receber o resumo da campanha.
+   - No nó "Resumo relatorio1", adicione o telefone que vai receber a mensagem quando o limite de disparo diário for excedido.
+
