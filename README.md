@@ -1,4 +1,4 @@
-# 🚀 Disparador de Campanhas via WhatsApp 🚀
+# 🚀 Solução de Disparador de Campanhas via WhatsApp 🚀
 
 ## 🌟 Introdução 🌟
 
@@ -60,3 +60,18 @@ Integração completa com o ChatWoot para gerenciar suas campanhas diretamente d
 - **Personalização**: Melhore a experiência do cliente com mensagens personalizadas. 🎯
 - **Eficiência**: Acompanhe o desempenho em tempo real e otimize suas campanhas. 📊
 - **Integração**: Dispare campanhas diretamente pelo ChatWoot sem precisar abrir outro sistema, otimizando tempo e recursos. 🚀
+
+---
+
+## 📘 Tutorial de Automação de Disparo de Campanhas
+
+Vamos começar o tutorial para fazer a automação do sistema de disparo de campanhas usando o n8n e a Evolution API junto ao ChatWoot. 
+
+Antes de iniciar, certifique-se de que você já tem instalado:
+
+- ChatWoot
+- n8n
+- Evolution API
+- pgAdmin ou outro de sua preferência para acessar o banco de dados do Postgres
+
+Vamos lá!
