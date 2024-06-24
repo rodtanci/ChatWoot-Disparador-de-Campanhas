@@ -166,10 +166,10 @@ Para criar uma campanha, siga os passos abaixo:
 
 ### Exemplo de uso:
 
-Olá &nome, tudo bem?
-Você já viu esta bela paisagem?
+_Olá &nome, tudo bem?_
+_Você já viu esta bela paisagem?_
 
-&anexo=https://img.freepik.com/fotos-gratis/paisagem-de-nevoeiro-matinal-e-montanhas-com-baloes-de-ar-quente-ao-nascer-do-sol_335224-794.jpg
+_&anexo=https://img.freepik.com/fotos-gratis/paisagem-de-nevoeiro-matinal-e-montanhas-com-baloes-de-ar-quente-ao-nascer-do-sol_335224-794.jpg_
 
 4. **Selecionar Caixa de Entrada**: No campo "Selecionar caixa de entrada", selecione a caixa de SMS que você criou no início do tutorial.
 5. **Público**: Selecione a etiqueta que está atribuída aos contatos que quer disparar a campanha.
