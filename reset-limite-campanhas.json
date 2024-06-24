@@ -1,0 +1,71 @@
+{
+  "name": "Reset limite campanha",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 0 * * *"
+            }
+          ]
+        }
+      },
+      "id": "8166d759-0e68-49b0-9183-f215cf956990",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        300,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE accounts\nSET limite_disparo = 100",
+        "options": {}
+      },
+      "id": "b9b20a59-d5ad-4983-8f97-80174ad3d0c9",
+      "name": "Adiciona limite",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [
+        580,
+        460
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "CbrIGpLnj1oilB4h",
+          "name": "Chatwoot"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Adiciona limite",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "875ac33b-0a52-4ce9-9d08-e9b9504930a7",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "33738330930e3881dd5571eca013f36ddf8aab20e4ea5c1f2ebaf4a2b4668ac6"
+  },
+  "id": "2YWttfWP2o5hr4wa",
+  "tags": []
+}
