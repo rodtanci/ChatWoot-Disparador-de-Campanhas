@@ -23,14 +23,14 @@ Integração completa com o ChatWoot para gerenciar suas campanhas diretamente d
 ### 📊 Limitador de Envios Diário por Empresa
 
 - Defina um limite diário de envios para cada empresa.
-- Evite sobrecarregar os a utilização da VPS com o alto fluxo de mensagens.
+- Evite sobrecarregar a utilização da VPS com o alto fluxo de mensagens.
 
 ### ⏳ Temporizador Randômico entre os Envios
 
-- Adicione um temporizador randômico entre os envios para evitar detecção como spam e bloquear o numero.
-- (Lembrando que isso não é uma garantia que você não possa perder seu número e sim uma solução para reduzir os riscos.)
+- Adicione um temporizador randômico entre os envios para evitar detecção como spam e bloquear o número.
+- (Lembrando que isso não é uma garantia de que você não possa perder seu número e sim uma solução para reduzir os riscos.)
 
-### 🔄 Contador de Envios e Falha
+### 🔄 Contador de Envios e Falhas
 
 - Acompanhe o número total de mensagens enviadas e falhas.
 
@@ -42,7 +42,7 @@ Integração completa com o ChatWoot para gerenciar suas campanhas diretamente d
 ### 📋 Mensagem de Relatório Final da Campanha
 
 - Receba um relatório detalhado ao final de cada campanha.
-- Inclui número total de envios, falhas.
+- Inclui número total de envios e falhas.
 
 ### 📝 Personalização com Nome do Contato
 
@@ -123,7 +123,7 @@ Antes de iniciar, certifique-se de que você já tem instalado:
 4. **Importar o Fluxo Disparador**:
    - Importe o arquivo de workflow disparador.json.
 5. **Importar o Fluxo Reset-Limite-Campanhas**:
-   - Repita os passos acima e importe o reset-limite-campanha.json
+   - Repita os passos acima e importe o reset-limite-campanha.json.
 
 ### Passo 4: Editar o Workflow Disparador no n8n
 
@@ -139,8 +139,8 @@ Antes de iniciar, certifique-se de que você já tem instalado:
 3. **Conectar Nós do Postgres ao Banco de Dados do ChatWoot**:
    - Conecte todos os nós do Postgres ao banco de dados do ChatWoot, garantindo que as informações fluam corretamente entre os sistemas.
 4. **Adicionar Seu Telefone para Receber Resumos**:
-   - No nó "Resumo relatorio", adicione o seu telefone para receber o resumo da campanha.
-   - No nó "Resumo relatorio1", adicione o telefone que vai receber a mensagem quando o limite de disparo diário for excedido.
+   - No nó "Resumo relatório", adicione o seu telefone para receber o resumo da campanha.
+   - No nó "Resumo relatório1", adicione o telefone que vai receber a mensagem quando o limite de disparo diário for excedido.
 
 ### Passo 5: Editar o Workflow reset-limite-campanha no n8n
 
@@ -177,4 +177,3 @@ _&anexo=https://img.freepik.com/fotos-gratis/paisagem-de-nevoeiro-matinal-e-mont
 7. **Clique em Criar**: Finalize a criação da campanha.
 
 Agora tudo está pronto para enviar a sua campanha!
-
