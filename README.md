@@ -74,4 +74,21 @@ Antes de iniciar, certifique-se de que você já tem instalado:
 - Evolution API
 - pgAdmin ou outro de sua preferência para acessar o banco de dados do Postgres
 
-Vamos lá!
+### Passo 1: Criar uma Caixa de Entrada de Canal SMS do Tipo Bandwidth
+
+1. **Acesse o ChatWoot**: Faça login na sua conta do ChatWoot.
+2. **Configurações**: Vá para a seção de configurações.
+3. **Caixas de Entrada**: Selecione "Caixas de Entrada" no menu.
+4. **Adicionar Nova Caixa de Entrada**: Clique no botão "Adicionar Nova Caixa de Entrada".
+5. **Escolher Tipo de Canal**: Selecione "SMS" e escolha "Bandwidth" como o tipo de canal.
+6. **Configurar Detalhes do Canal**:
+   - Nome da Caixa de Entrada: Disparador (ou o nome que preferir)
+   - Número de telefone: +741963
+   - ID da Conta: 741963
+   - ID da aplicação: 741963
+   - Chave API: id da conta do chatwoot
+   - chave secreta API: 741963
+7. **Salvar Configurações**: Clique em "Criar canal Bandwidth" para criar a nova caixa de entrada.
+
+Agora que a caixa de entrada do canal SMS do tipo Bandwidth está configurada, podemos prosseguir para os próximos passos da automação!
+
