@@ -82,13 +82,30 @@ Antes de iniciar, certifique-se de que você já tem instalado:
 4. **Adicionar Nova Caixa de Entrada**: Clique no botão "Adicionar Nova Caixa de Entrada".
 5. **Escolher Tipo de Canal**: Selecione "SMS" e escolha "Bandwidth" como o tipo de canal.
 6. **Configurar Detalhes do Canal**:
-   - Nome da Caixa de Entrada: Disparador (ou o nome que preferir)
-   - Número de telefone: +741963
-   - ID da Conta: 741963
-   - ID da aplicação: 741963
-   - Chave API: id da conta do chatwoot
-   - chave secreta API: 741963
-7. **Salvar Configurações**: Clique em "Criar canal Bandwidth" para criar a nova caixa de entrada.
+   - Insira os detalhes necessários, como as credenciais da Bandwidth (API Key, API Secret, etc.).
+   - Configure as opções de número de telefone e outras configurações específicas do Bandwidth.
+7. **Salvar Configurações**: Clique em "Salvar" para criar a nova caixa de entrada.
 
-Agora que a caixa de entrada do canal SMS do tipo Bandwidth está configurada, podemos prosseguir para os próximos passos da automação!
+### Passo 2: Adicionar Colunas no Banco de Dados do ChatWoot
 
+1. **Acesse o Banco de Dados**: Use o pgAdmin ou outro software de sua preferência para acessar o banco de dados do ChatWoot.
+2. **Adicionar Coluna na Tabela Accounts**:
+   - Execute o seguinte comando SQL para adicionar a coluna `limite_disparo`:
+     ```sql
+     ALTER TABLE accounts
+     ADD COLUMN limite_disparo INTEGER NOT NULL DEFAULT 100;
+     ```
+3. **Adicionar Colunas na Tabela Campaigns**:
+   - Execute os seguintes comandos SQL para adicionar as colunas `status_envia`, `enviou` e `falhou`:
+     ```sql
+     ALTER TABLE campaigns
+     ADD COLUMN status_envia INTEGER NOT NULL DEFAULT 0;
+     
+     ALTER TABLE campaigns
+     ADD COLUMN enviou INTEGER NOT NULL DEFAULT 0;
+     
+     ALTER TABLE campaigns
+     ADD COLUMN falhou INTEGER NOT NULL DEFAULT 0;
+     ```
+
+Agora que as colunas foram adicionadas ao banco de dados, podemos prosseguir para os próximos passos da automação!
