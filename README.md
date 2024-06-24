@@ -82,9 +82,13 @@ Antes de iniciar, certifique-se de que você já tem instalado:
 4. **Adicionar Nova Caixa de Entrada**: Clique no botão "Adicionar Nova Caixa de Entrada".
 5. **Escolher Tipo de Canal**: Selecione "SMS" e escolha "Bandwidth" como o tipo de canal.
 6. **Configurar Detalhes do Canal**:
-   - Insira os detalhes necessários, como as credenciais da Bandwidth (API Key, API Secret, etc.).
-   - Configure as opções de número de telefone e outras configurações específicas do Bandwidth.
-7. **Salvar Configurações**: Clique em "Salvar" para criar a nova caixa de entrada.
+   - Nome da Caixa de Entrada: Disparador (ou o nome que preferir).
+   - Número de telefone: +741963
+   - ID da Conta: 741963
+   - ID da aplicação: 741963
+   - Chave API: ID da conta do ChatWoot
+   - Chave secreta API: 741963
+7. **Salvar Configurações**: Clique em "Criar canal Bandwidth" para criar a nova caixa de entrada.
 
 ### Passo 2: Adicionar Colunas no Banco de Dados do ChatWoot
 
@@ -137,4 +141,40 @@ Antes de iniciar, certifique-se de que você já tem instalado:
 4. **Adicionar Seu Telefone para Receber Resumos**:
    - No nó "Resumo relatorio", adicione o seu telefone para receber o resumo da campanha.
    - No nó "Resumo relatorio1", adicione o telefone que vai receber a mensagem quando o limite de disparo diário for excedido.
+
+### Passo 5: Editar o Workflow reset-limite-campanha no n8n
+
+1. **Acesse o Workflow reset-limite-campanha**: No n8n, abra o workflow reset-limite-campanha que você importou.
+2. **Conectar Nós do Postgres ao Banco de Dados do ChatWoot**:
+   - Conecte todos os nós do Postgres ao banco de dados do ChatWoot, garantindo que as informações sejam atualizadas corretamente para resetar o limite de disparo diário.
+
+---
+
+Agora que os workflows foram importados, configurados e editados, sua automação de disparo de campanhas está pronta para funcionar!
+
+## 📢 Cadastro de uma Nova Campanha no ChatWoot
+
+Para criar uma campanha, siga os passos abaixo:
+
+1. **Clique em Campanhas**: Acesse a seção de Campanhas no ChatWoot.
+2. **Clique em Única**: Selecione a opção "Única".
+3. **Clique em Criar uma campanha única**: Adicione as informações da sua campanha.
+   - **Título**: Insira o título da campanha.
+   - **Mensagem**: Digite a mensagem que quer enviar na campanha.
+     - Para adicionar o nome do contato à mensagem, digite `&nome`.
+     - Para adicionar uma imagem, digite `&anexo=urldaimagemaqui.jpg`.
+
+### Exemplo de uso:
+
+Olá &nome, tudo bem?
+Você já viu esta bela paisagem?
+
+&anexo=https://img.freepik.com/fotos-gratis/paisagem-de-nevoeiro-matinal-e-montanhas-com-baloes-de-ar-quente-ao-nascer-do-sol_335224-794.jpg
+
+4. **Selecionar Caixa de Entrada**: No campo "Selecionar caixa de entrada", selecione a caixa de SMS que você criou no início do tutorial.
+5. **Público**: Selecione a etiqueta que está atribuída aos contatos que quer disparar a campanha.
+6. **Horário Agendado**: Selecione o dia e a hora que quer disparar a campanha. Caso queira disparar a campanha na mesma hora, selecione a data e a hora atual.
+7. **Clique em Criar**: Finalize a criação da campanha.
+
+Agora tudo está pronto para enviar a sua campanha!
 
