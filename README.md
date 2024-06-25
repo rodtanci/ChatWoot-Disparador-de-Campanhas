@@ -136,11 +136,9 @@ Antes de iniciar, certifique-se de que você já tem instalado:
      - **Nome da Caixa de Entrada cadastrada na Evolution API que vai disparar as mensagens**
      - **Token de acesso da conta do ChatWoot**
      - **ID da conta do ChatWoot**
+     - **Número do WhatsApp que vai receber o relatório**
 3. **Conectar Nós do Postgres ao Banco de Dados do ChatWoot**:
    - Conecte todos os nós do Postgres ao banco de dados do ChatWoot, garantindo que as informações fluam corretamente entre os sistemas.
-4. **Adicionar Seu Telefone para Receber Resumos**:
-   - No nó "Resumo relatório", adicione o seu telefone para receber o resumo da campanha.
-   - No nó "Resumo relatório1", adicione o telefone que vai receber a mensagem quando o limite de disparo diário for excedido.
 
 ### Passo 5: Editar o Workflow reset-limite-campanha no n8n
 
