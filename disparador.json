@@ -1,5 +1,5 @@
 {
-  "name": "Disparador 1.0.2 Sem Credenciais",
+  "name": "Disparador 1.0.2",
   "nodes": [
     {
       "parameters": {
@@ -176,17 +176,6 @@
           "name": "Chatwoot"
         }
       }
-    },
-    {
-      "parameters": {},
-      "id": "ae972dbf-451e-49b3-803e-747619631f1b",
-      "name": "Merge6",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 2.1,
-      "position": [
-        8180,
-        520
-      ]
     },
     {
       "parameters": {},
@@ -1888,7 +1877,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "0400ac95-a2bf-436f-b0d6-44f231242a45",
+  "versionId": "dbe8fc37-c819-4792-b56c-5fec23b4ad3c",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "33738330930e3881dd5571eca013f36ddf8aab20e4ea5c1f2ebaf4a2b4668ac6"
