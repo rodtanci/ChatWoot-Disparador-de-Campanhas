@@ -181,7 +181,7 @@ Agora tudo está pronto para enviar a sua campanha!
 
 ## 📅 Roadmap do Projeto
 
-**Versão 1.1** (Já Disponível) 🚀
+### Versão 1.1 (Já Disponível) 🚀
 
 **Mensagem de Início de Disparo**
 Implementar uma mensagem que indique o início do disparo da campanha para notificar os usuários sobre o processo inicial.
@@ -189,7 +189,7 @@ Implementar uma mensagem que indique o início do disparo da campanha para notif
 **Correção no limitador**
 Correção no limitador de disparo, foi encontrado um erro que ele rouba 1 limite da conta quando chega em 1.
 
-**Versão 1.2** 💡
+### Versão 1.2 💡
 
 **Relatório de Finalização por Email**
 Adicionar funcionalidade para enviar um relatório por email ao final da campanha, detalhando métricas e resultados.
@@ -197,17 +197,17 @@ Adicionar funcionalidade para enviar um relatório por email ao final da campanh
 **Inclusão do Limite de Disparos Diários no Relatório**
 Introduzir no relatório o número restante de disparos diários disponíveis, fornecendo transparência sobre os limites e uso.
 
-**Versão 1.3** 📊
+### Versão 1.3 📊
 
 **Adicionando variável**
 Vamos adicionar a variável &email para conseguir personalizar mais ainda a mensagem.
 
-**Versão 1.4** 🚨
+### Versão 1.4 🚨
 
 **Relatório de Falhas de Envio**
 Desenvolver um relatório específico que liste os contatos que falharam no envio, incluindo nome e telefone, para análise e correção.
 
-**Versão 2.0** 🌟
+### Versão 2.0 🌟
 
 **Envio de Mensagens Dinâmicas**
 Possibilidade de cadastrar mais de uma mensagem dentro do template para disparar de forma aleatória, evitando bloqueio do número.
@@ -215,7 +215,7 @@ Possibilidade de cadastrar mais de uma mensagem dentro do template para disparar
 **Disparo por Múltiplos Números de WhatsApp**
 Permitir o disparo de campanhas através de mais de um número de WhatsApp, melhorando a capacidade de gestão e distribuição das mensagens.
 
-**Considerações Finais** 🛠️
+### Considerações Finais 🛠️
 Este roadmap pode ser ajustado conforme novas ideias surjam ou prioridades se alterem durante o desenvolvimento. Cada etapa visa melhorar a funcionalidade e a eficiência do disparador de campanhas, proporcionando uma experiência mais completa e eficaz aos usuários.
 
 ---
