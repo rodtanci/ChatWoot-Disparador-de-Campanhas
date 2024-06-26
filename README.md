@@ -39,8 +39,9 @@ Integração completa com o ChatWoot para gerenciar suas campanhas diretamente d
 - Envio automático de uma mensagem quando o limite diário de envios for excedido.
 - Mantenha os administradores informados sobre o status das campanhas.
 
-### 📋 Mensagem de Relatório Final da Campanha
+### 📋 Mensagem de Relatório da Campanha
 
+- Receba uma mensagem avisando que o disparo da campanha foi iniciado.
 - Receba um relatório detalhado ao final de cada campanha.
 - Inclui número total de envios e falhas.
 
