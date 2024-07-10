@@ -44,6 +44,7 @@ Integração completa com o ChatWoot para gerenciar suas campanhas diretamente d
 - Receba uma mensagem avisando que o disparo da campanha foi iniciado.
 - Receba um relatório detalhado ao final de cada campanha.
 - Inclui número total de envios e falhas.
+- Inclui número de disparos que restam no dia.
 
 ### 📝 Personalização com Nome e Email do Contato
 
