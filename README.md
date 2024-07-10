@@ -45,9 +45,10 @@ Integração completa com o ChatWoot para gerenciar suas campanhas diretamente d
 - Receba um relatório detalhado ao final de cada campanha.
 - Inclui número total de envios e falhas.
 
-### 📝 Personalização com Nome do Contato
+### 📝 Personalização com Nome e Email do Contato
 
 - Use a variável (&nome) para personalizar as mensagens com o nome do contato.
+- Use a variável (&email) para personalizar as mensagens com o email do contato.
 - Aumente a personalização e eficácia das suas mensagens de campanha.
 
 ### 🏷️ Disparos através das Etiquetas dos Contatos
