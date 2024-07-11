@@ -140,7 +140,10 @@ Antes de iniciar, certifique-se de que você já tem instalado:
      - **Token de acesso da conta do ChatWoot**
      - **ID da conta do ChatWoot**
      - **Número do WhatsApp que vai receber o relatório**
-3. **Conectar Nós do Postgres ao Banco de Dados do ChatWoot**:
+3. **Editar Nó Buscar campanhas**:
+   - Substitua "ID_CHATWOOT" pelo id da instancia do ChatWoot.
+   - Substitua "ID_DO_DISPARADOR" pelo id da caixa de entrada do disparador que voce crio no **Passo 1**.
+4. **Conectar Nós do Postgres ao Banco de Dados do ChatWoot**:
    - Conecte todos os nós do Postgres ao banco de dados do ChatWoot, garantindo que as informações fluam corretamente entre os sistemas.
 
 ### Passo 5: Editar o Workflow reset-limite-campanha no n8n
