@@ -281,6 +281,8 @@ FOR EACH ROW
 EXECUTE FUNCTION update_labels_to_tags();
 ```
 
+---
+
 ## 📅 Roadmap do Projeto
 
 ### Versão 1.1 (Já Disponível) 🚀
