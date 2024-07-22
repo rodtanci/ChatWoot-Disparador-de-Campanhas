@@ -32,7 +32,8 @@ Integração completa com o ChatWoot para gerenciar suas campanhas diretamente d
 
 ### 🔄 Contador de Envios e Falhas
 
-- Acompanhe o número total de mensagens enviadas e falhas.
+- Conta número de envios ✅.
+- Conta número de falhas ❌.
 
 ### 🚫 Mensagem de Excesso de Limite Diário
 
@@ -45,6 +46,7 @@ Integração completa com o ChatWoot para gerenciar suas campanhas diretamente d
 - Receba um relatório detalhado ao final de cada campanha.
 - Inclui número total de envios e falhas.
 - Inclui número de disparos que restam no dia.
+- Inclui os números que não enviaram com o nome do contato.
 
 ### 📝 Personalização com Nome e Email do Contato
 
@@ -115,6 +117,17 @@ Antes de iniciar, certifique-se de que você já tem instalado:
      ADD COLUMN falhou INTEGER NOT NULL DEFAULT 0;
      ```
 
+4. **Adicionar nova Tabela para guardar os envios que falharem**:
+   - Execute o seguinte comando SQL para adicionar a tabela campaigns_failled:
+     ```sql
+      CREATE TABLE campaigns_failled (
+       id BIGINT PRIMARY KEY NOT NULL,
+       nomecontato TEXT NOT NULL,
+       telefone CHARACTER VARYING NOT NULL,
+       id_campanha INTEGER NOT NULL
+      );
+     ```
+
 ### Passo 3: Importar Workflows no n8n
 
 1. **Acesse o n8n**: Faça login na sua instância do n8n.
@@ -135,10 +148,12 @@ Antes de iniciar, certifique-se de que você já tem instalado:
    - Preencha os seguintes campos com suas informações:
      - **URL do ChatWoot**
      - **URL da Evolution API**
+     - **Token de acesso da conta do ChatWoot**
      - **Global API KEY da Evolution API**
      - **Nome da Caixa de Entrada cadastrada na Evolution API que vai disparar as mensagens**
-     - **Token de acesso da conta do ChatWoot**
+     - **ID da caixa da Evolution API**
      - **ID da conta do ChatWoot**
+     - **Email que vai receber o relatório**
      - **Número do WhatsApp que vai receber o relatório**
 3. **Editar Nó Buscar campanhas**:
    - Substitua "ID_CHATWOOT" pelo id da instancia do ChatWoot.
@@ -183,6 +198,86 @@ _&anexo=https://img.freepik.com/fotos-gratis/paisagem-de-nevoeiro-matinal-e-mont
 Agora tudo está pronto para enviar a sua campanha!
 
 ---
+
+## 🛠️ EXTRA - CORREÇÃO NO BANCO DE DADOS DO CHATWOOT 🔧
+### Aplique essa coreção caso esteja enfrantando problemas de não achar os contatos da campanha
+
+- Foi notado que os ID da tabela "labels" não condizia com os id ta tabela "tags" sendo assim criei algumas funções e triggers que corrigem esse problema.
+
+**Passo 1: Criação das Funções de Replicação, Exclusão e Atualização**
+***Cria na raiz do banco de dados***
+
+**Função para replicar inserções:**
+
+```sql
+CREATE OR REPLACE FUNCTION replicate_labels_to_tags()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO tags (id, name)
+    VALUES (NEW.id, NEW.title);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+**Função para replicar exclusões:**
+
+```sql
+CREATE OR REPLACE FUNCTION delete_labels_from_tags_and_taggings()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Exclui da tabela tags
+    DELETE FROM tags WHERE id = OLD.id;
+    -- Exclui da tabela taggings
+    DELETE FROM taggings WHERE tag_id = OLD.id;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+**Função para replicar atualizações:**
+
+```sql
+CREATE OR REPLACE FUNCTION update_labels_to_tags()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE tags
+    SET name = NEW.title
+    WHERE id = NEW.id;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+**Passo 2: Criação dos Triggers**
+***Criar na tabela labels***
+
+**Trigger para inserções:**
+
+```sql
+CREATE TRIGGER after_insert_labels
+AFTER INSERT ON labels
+FOR EACH ROW
+EXECUTE FUNCTION replicate_labels_to_tags();
+```
+
+**Trigger para exclusões:**
+
+```sql
+CREATE TRIGGER after_delete_labels
+AFTER DELETE ON labels
+FOR EACH ROW
+EXECUTE FUNCTION delete_labels_from_tags_and_taggings();
+```
+
+**Trigger para atualizações:**
+
+```sql
+CREATE TRIGGER after_update_labels
+AFTER UPDATE ON labels
+FOR EACH ROW
+EXECUTE FUNCTION update_labels_to_tags();
+```
 
 ## 📅 Roadmap do Projeto
 
