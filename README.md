@@ -205,7 +205,7 @@ Agora tudo está pronto para enviar a sua campanha!
 - Foi notado que os ID da tabela "labels" não condizia com os id ta tabela "tags" sendo assim criei algumas funções e triggers que corrigem esse problema.
 
 **Passo 1: Criação das Funções de Replicação, Exclusão e Atualização**
-**Cria na raiz do banco de dados**
+***Cria na raiz do banco de dados***
 
 **Função para replicar inserções:**
 
@@ -250,7 +250,7 @@ $$ LANGUAGE plpgsql;
 ```
 
 **Passo 2: Criação dos Triggers**
-**Criar na tabela labels**
+***Criar na tabela labels***
 
 **Trigger para inserções:**
 
