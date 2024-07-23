@@ -311,6 +311,11 @@ EXECUTE FUNCTION update_labels_to_tags();
 **Relatório de Falhas de Envio**
 - Desenvolver um relatório específico que liste os contatos que falharam no envio, incluindo nome e telefone, para análise e correção.
 
+### Versão 1.5 📑
+
+**Envio de PDF**
+- Incluir a inserão de um arquivo pdf dentro da campanha.
+
 ### Versão 2.0 🌟
 
 **Envio de Mensagens Dinâmicas**
