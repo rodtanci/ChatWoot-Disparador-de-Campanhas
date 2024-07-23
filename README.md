@@ -120,11 +120,15 @@ Antes de iniciar, certifique-se de que você já tem instalado:
 4. **Adicionar nova Tabela para guardar os envios que falharem**:
    - Execute o seguinte comando SQL para adicionar a tabela campaigns_failled:
      ```sql
+      -- Cria a sequência
+      CREATE SEQUENCE campaigns_failled_id_seq;
+      
+      -- Cria a tabela com a coluna `id` usando a sequência criada
       CREATE TABLE campaigns_failled (
-       id BIGINT PRIMARY KEY NOT NULL,
-       nomecontato TEXT NOT NULL,
-       telefone CHARACTER VARYING NOT NULL,
-       id_campanha INTEGER NOT NULL
+        id BIGINT PRIMARY KEY NOT NULL DEFAULT nextval('campaigns_failled_id_seq'::regclass),
+        nomecontato TEXT NOT NULL,
+        telefone CHARACTER VARYING NOT NULL,
+        id_campanha INTEGER NOT NULL
       );
      ```
 
