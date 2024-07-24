@@ -15,10 +15,16 @@ Integração completa com o ChatWoot para gerenciar suas campanhas diretamente d
 - Agende suas campanhas para uma data e hora específicas.
 - Opção para disparo imediato, permitindo envios em tempo real.
 
-### 🖼️ Envio de Imagens
+### 🖼️ Envio de Imagem
 
 - Possibilidade de incluir imagens nas mensagens da campanha.
 - Suporte para múltiplos formatos de imagem (JPEG e PNG).
+- Usar a variavel &img=linkdaimagem.jpg
+
+### 📝 Envio de PDF
+
+- Possibilidade de incluir PDF junto com uma mensagem.
+- Usar a variavel &doc=linkdopdf.pdf
 
 ### 📊 Limitador de Envios Diário por Empresa
 
@@ -187,12 +193,19 @@ Para criar uma campanha, siga os passos abaixo:
      - Para adicionar o nome do contato à mensagem, digite `&nome`.
      - Para adicionar uma imagem, digite `&anexo=urldaimagemaqui.jpg`.
 
-### Exemplo de uso:
+### Exemplo de uso imagem:
 
 "_Olá &nome, tudo bem?_
 _Você já viu esta bela paisagem?_
 
-_&anexo=https://img.freepik.com/fotos-gratis/paisagem-de-nevoeiro-matinal-e-montanhas-com-baloes-de-ar-quente-ao-nascer-do-sol_335224-794.jpg_"
+_&img=https://img.freepik.com/fotos-gratis/paisagem-de-nevoeiro-matinal-e-montanhas-com-baloes-de-ar-quente-ao-nascer-do-sol_335224-794.jpg_"
+
+**OU**
+
+"_Olá &nome, tudo bem?_
+_Segue o nosso catalogo em PDF?_
+
+_&doc=https://www.thecampusqdl.com/uploads/files/pdf_sample_2.pdf"
 
 4. **Selecionar Caixa de Entrada**: No campo "Selecionar caixa de entrada", selecione a caixa de SMS que você criou no início do tutorial.
 5. **Público**: Selecione a etiqueta que está atribuída aos contatos que quer disparar a campanha.
