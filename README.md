@@ -205,7 +205,7 @@ _&img=https://img.freepik.com/fotos-gratis/paisagem-de-nevoeiro-matinal-e-montan
 "_Olá &nome, tudo bem?_
 _Segue o nosso catalogo em PDF?_
 
-_&doc=https://www.thecampusqdl.com/uploads/files/pdf_sample_2.pdf"
+_&doc=https://www.thecampusqdl.com/uploads/files/pdf_sample_2.pdf_"
 
 4. **Selecionar Caixa de Entrada**: No campo "Selecionar caixa de entrada", selecione a caixa de SMS que você criou no início do tutorial.
 5. **Público**: Selecione a etiqueta que está atribuída aos contatos que quer disparar a campanha.
