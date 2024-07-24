@@ -318,7 +318,7 @@ EXECUTE FUNCTION update_labels_to_tags();
 ### Versão 1.5 📑
 
 **Envio de PDF**
-- Incluir a inserão de um arquivo pdf dentro da campanha.
+- Incluir a inserção de um arquivo pdf dentro da campanha.
 
 ### Versão 2.0 🌟
 
