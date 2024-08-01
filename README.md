@@ -139,7 +139,7 @@ Antes de iniciar, certifique-se de que você já tem instalado:
      ```
 
 ## 🛠️ OBRIGATORIO ❗ - 🚨 CORREÇÃO NO BANCO DE DADOS DO CHATWOOT ⚠️
-### Aplique essa coreção caso esteja enfrantando problemas de não achar os contatos da campanha
+### Após aplicar esta correção é recomendavel recriar as etiquetas (marcadores).
 
 - Foi notado que os ID da tabela "labels" não condizia com os id ta tabela "tags" sendo assim criei algumas funções e triggers que corrigem esse problema.
 
