@@ -4,7 +4,7 @@
 
 O disparador de campanhas oferece uma forma eficiente e eficaz de gerenciar e enviar mensagens de campanha utilizando o ChatWoot. Esta solução é projetada para facilitar a comunicação com seus clientes, permitindo agendamento de campanhas, envio de mensagens personalizadas e acompanhamento de desempenho.
 
-## Funcionalidades&
+## Funcionalidades
 
 ### 📱 Campanhas dentro do ChatWoot
 
