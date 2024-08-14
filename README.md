@@ -4,7 +4,7 @@
 
 O disparador de campanhas oferece uma forma eficiente e eficaz de gerenciar e enviar mensagens de campanha utilizando o ChatWoot. Esta solução é projetada para facilitar a comunicação com seus clientes, permitindo agendamento de campanhas, envio de mensagens personalizadas e acompanhamento de desempenho.
 
-## Funcionalidades
+## Funcionalidades&
 
 ### 📱 Campanhas dentro do ChatWoot
 
@@ -289,7 +289,7 @@ _&img=https://img.freepik.com/fotos-gratis/paisagem-de-nevoeiro-matinal-e-montan
 "_Olá &nome, tudo bem?_
 _Segue o nosso catalogo em PDF?_
 
-_&doc=https://www.thecampusqdl.com/uploads/files/pdf_sample_2.pdf_"
+_&doc=https://evolution-api.com/files/evolution-api.pdf_"
 
 4. **Selecionar Caixa de Entrada**: No campo "Selecionar caixa de entrada", selecione a caixa de SMS que você criou no início do tutorial.
 5. **Público**: Selecione a etiqueta que está atribuída aos contatos que quer disparar a campanha.
