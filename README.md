@@ -344,6 +344,11 @@ Agora tudo está pronto para enviar a sua campanha!
 
 **Envio de PDF**
 - Incluir a inserção de um arquivo pdf dentro da campanha.
+  
+### Versão 1.6 📑
+
+**Envio de PDF**
+- Incluir a inserção de video dentro da campanha.
 
 ### Versão 2.0 🌟
 
