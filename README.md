@@ -250,7 +250,6 @@ Antes de iniciar, certifique-se de que você já tem instalado:
      - **Token de acesso da conta do ChatWoot**
      - **Global API KEY da Evolution API**
      - **Nome da Caixa de Entrada cadastrada na Evolution API que vai disparar as mensagens**
-     - **ID da caixa da Evolution API**
      - **ID da conta do ChatWoot**
      - **Email que vai receber o relatório**
      - **Número do WhatsApp que vai receber o relatório**
