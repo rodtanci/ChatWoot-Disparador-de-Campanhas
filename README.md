@@ -26,6 +26,11 @@ Integração completa com o ChatWoot para gerenciar suas campanhas diretamente d
 - Possibilidade de incluir PDF junto com uma mensagem.
 - Usar a variavel &doc=linkdopdf.pdf
 
+### 🎬 Envio de Video
+
+- Possibilidade de incluir video nas mensagens da campanha.
+- Usar a variavel &vid=linkdovideo.mp4
+
 ### 📊 Limitador de Envios Diário por Empresa
 
 - Defina um limite diário de envios para cada empresa.
@@ -284,12 +289,19 @@ _Você já viu esta bela paisagem?_
 
 _&img=https://img.freepik.com/fotos-gratis/paisagem-de-nevoeiro-matinal-e-montanhas-com-baloes-de-ar-quente-ao-nascer-do-sol_335224-794.jpg_"
 
-**OU**
+**ENVIO DE PDF**
 
 "_Olá &nome, tudo bem?_
 _Segue o nosso catalogo em PDF?_
 
 _&doc=https://evolution-api.com/files/evolution-api.pdf_"
+
+**ENVIO DE VIDEO**
+
+"_Olá &nome, tudo bem?_
+Você  já viu esse vídeo??_
+
+_&vid=https://evolution-api.com/files/video.mp4_"
 
 4. **Selecionar Caixa de Entrada**: No campo "Selecionar caixa de entrada", selecione a caixa de SMS que você criou no início do tutorial.
 5. **Público**: Selecione a etiqueta que está atribuída aos contatos que quer disparar a campanha.
