@@ -279,7 +279,10 @@ Para criar uma campanha, siga os passos abaixo:
    - **Título**: Insira o título da campanha.
    - **Mensagem**: Digite a mensagem que quer enviar na campanha.
      - Para adicionar o nome do contato à mensagem, digite `&nome`.
-     - Para adicionar uma imagem, digite `&anexo=urldaimagemaqui.jpg`.
+     - Para adicionar o email do contato à mensagem, digite `&email`.
+     - Para adicionar uma imagem, digite `&img=urldaimagemaqui.jpg`.
+     - Para adicionar um video, digite `&vid=urldovideo.mp4`.
+     - Para adicionar um pdf, digite `&doc=urldopdf.pdf`.
 
 ### Exemplo de uso imagem:
 
@@ -288,14 +291,14 @@ _Você já viu esta bela paisagem?_
 
 _&img=https://img.freepik.com/fotos-gratis/paisagem-de-nevoeiro-matinal-e-montanhas-com-baloes-de-ar-quente-ao-nascer-do-sol_335224-794.jpg_"
 
-**ENVIO DE PDF**
+### Exemplo de uso pdf:
 
 "_Olá &nome, tudo bem?_
 _Segue o nosso catalogo em PDF?_
 
 _&doc=https://evolution-api.com/files/evolution-api.pdf_"
 
-**ENVIO DE VIDEO**
+### Exemplo de uso video:
 
 "_Olá &nome, tudo bem?_
 Você  já viu esse vídeo??_
