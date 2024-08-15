@@ -102,7 +102,7 @@ Antes de iniciar, certifique-se de que você já tem instalado:
    - Número de telefone: +741963
    - ID da Conta: 741963
    - ID da aplicação: 741963
-   - Chave API: ID da conta do ChatWoot
+   - Chave API: 741963
    - Chave secreta API: 741963
 7. **Salvar Configurações**: Clique em "Criar canal Bandwidth" para criar a nova caixa de entrada.
 
