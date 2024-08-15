@@ -316,7 +316,7 @@ Agora tudo está pronto para enviar a sua campanha!
 
 ## 📅 Roadmap do Projeto
 
-### Versão 1.1 (Já Disponível) 🚀
+### Versão 1.1 🚀
 
 **Mensagem de Início de Disparo**
 - Implementar uma mensagem que indique o início do disparo da campanha para notificar os usuários sobre o processo inicial.
@@ -347,7 +347,7 @@ Agora tudo está pronto para enviar a sua campanha!
 **Envio de PDF**
 - Incluir a inserção de um arquivo pdf dentro da campanha.
   
-### Versão 1.6 📑
+### Versão 1.6 (Já Disponível) 📑
 
 **Envio de PDF**
 - Incluir a inserção de video dentro da campanha.
