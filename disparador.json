@@ -1319,7 +1319,7 @@
     {
       "parameters": {
         "operation": "executeQuery",
-        "query": "SELECT * \nFROM campaigns c \nWHERE account_id = 1\nAND status_envia = 0\nAND inbox_id = 29;",
+        "query": "SELECT * \nFROM campaigns c \nWHERE account_id = 0\nAND status_envia = 0\nAND inbox_id = 0;",
         "additionalFields": {}
       },
       "id": "05409e0d-cf9e-4c90-a169-42f22c90e170",
@@ -1379,56 +1379,6 @@
           "name": "Chatwoot"
         }
       }
-    },
-    {
-      "parameters": {
-        "keepOnlySet": true,
-        "values": {
-          "string": [
-            {
-              "name": "chatwoot_url",
-              "value": "https://chat.setabot.com.br"
-            },
-            {
-              "name": "evolution_url",
-              "value": "https://evo.setabot.com.br"
-            },
-            {
-              "name": "chatwoot_token",
-              "value": "fcb3dbde90ac803b92cc5a4049cb70e4"
-            },
-            {
-              "name": "global_api_key",
-              "value": "fcb3dbde90ac803b92cc5a4049cb70e4"
-            },
-            {
-              "name": "instance_name",
-              "value": "SetaBotQRCode"
-            },
-            {
-              "name": "chatwoot_account_id",
-              "value": "1"
-            },
-            {
-              "name": "email_relatorio",
-              "value": "rcbtancy@gmail.com"
-            },
-            {
-              "name": "recebe_relatorio",
-              "value": "5511991434266"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "0f5506d1-c532-4a6b-ae63-78ac52e8ac72",
-      "name": "Info_Base",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 2,
-      "position": [
-        -2240,
-        1040
-      ]
     },
     {
       "parameters": {
@@ -2044,6 +1994,56 @@
         -1200,
         1120
       ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "chatwoot_url",
+              "value": "https://urlchatwoot.com"
+            },
+            {
+              "name": "evolution_url",
+              "value": "https://urlevo.com"
+            },
+            {
+              "name": "chatwoot_token",
+              "value": "tokenchatwoot"
+            },
+            {
+              "name": "global_api_key",
+              "value": "global api evo"
+            },
+            {
+              "name": "instance_name",
+              "value": "nome da tenancia evo"
+            },
+            {
+              "name": "chatwoot_account_id",
+              "value": "id conta chatwoot"
+            },
+            {
+              "name": "email_relatorio",
+              "value": "email@email.com"
+            },
+            {
+              "name": "recebe_relatorio",
+              "value": "551199996666"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "798f8d5d-1da3-4b46-b45d-69743149d0f1",
+      "name": "Info_Base1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -2240,
+        1040
+      ]
     }
   ],
   "pinData": {},
@@ -2052,7 +2052,7 @@
       "main": [
         [
           {
-            "node": "Info_Base",
+            "node": "Info_Base1",
             "type": "main",
             "index": 0
           }
@@ -2576,17 +2576,6 @@
         ]
       ]
     },
-    "Info_Base": {
-      "main": [
-        [
-          {
-            "node": "Buscar campanhas",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Envia msg": {
       "main": [
         [
@@ -2832,13 +2821,24 @@
           }
         ]
       ]
+    },
+    "Info_Base1": {
+      "main": [
+        [
+          {
+            "node": "Buscar campanhas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "b4171dec-0926-4a64-9819-12a256e72b2e",
+  "versionId": "6d14a5e9-d9b9-48b6-902f-de43563bbe24",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "33738330930e3881dd5571eca013f36ddf8aab20e4ea5c1f2ebaf4a2b4668ac6"
