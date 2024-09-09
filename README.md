@@ -31,6 +31,11 @@ Integração completa com o ChatWoot para gerenciar suas campanhas diretamente d
 - Possibilidade de incluir video nas mensagens da campanha.
 - Usar a variavel &vid=linkdovideo.mp4
 
+### 🔊 Envio de Audio
+
+- Possibilidade de incluir audio nas mensagens da campanha.
+- Usar a variavel &audio=linkdoaudio.mp3
+
 ### 📊 Limitador de Envios Diário por Empresa
 
 - Defina um limite diário de envios para cada empresa.
@@ -347,10 +352,15 @@ Agora tudo está pronto para enviar a sua campanha!
 **Envio de PDF**
 - Incluir a inserção de um arquivo pdf dentro da campanha.
   
-### Versão 1.6 (Já Disponível) 📑
+### Versão 1.6 🎬
 
-**Envio de PDF**
+**Envio de VIDEO**
 - Incluir a inserção de video dentro da campanha.
+
+### Versão 1.7 (Já Disponível) 🔊
+
+**Envio de AUDIO**
+- Incluir a inserção de audio dentro da campanha.
 
 ### Versão 2.0 🌟
 
