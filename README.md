@@ -357,10 +357,20 @@ Agora tudo está pronto para enviar a sua campanha!
 **Envio de VIDEO**
 - Incluir a inserção de video dentro da campanha.
 
-### Versão 1.7 (Já Disponível) 🔊
+### Versão 1.7 🔊
 
 **Envio de AUDIO**
 - Incluir a inserção de audio dentro da campanha.
+
+### Versão 1.8 🏷️🏷️
+
+**Multiplas etiquetas**
+- Disparar campanha para mais de uma etiqueta.
+
+### Versão 1.9 📇💬 (Já disponível)
+
+**Buscar etiquetas na conversa**
+- Agora alem de buscar a etiqueta do contato ele busca nas conversas.
 
 ### Versão 2.0 🌟
 
