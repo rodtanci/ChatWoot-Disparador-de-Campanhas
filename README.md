@@ -371,6 +371,8 @@ Agora tudo está pronto para enviar a sua campanha!
 
 **Buscar etiquetas na conversa**
 - Agora alem de buscar a etiqueta do contato ele busca nas conversas.
+**Envia campanha para grupos**
+- Agora suas campanhas tambem serão enviadas para grupos do whatsapp.
 
 ### Versão 2.0 🌟
 
