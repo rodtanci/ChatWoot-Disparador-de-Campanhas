@@ -257,14 +257,8 @@ Antes de iniciar, certifique-se de que você já tem instalado:
      - **URL da Evolution API**
      - **Token de acesso da conta do ChatWoot**
      - **Global API KEY da Evolution API**
-     - **Nome da Caixa de Entrada cadastrada na Evolution API que vai disparar as mensagens**
-     - **ID da conta do ChatWoot**
-     - **Email que vai receber o relatório**
-     - **Número do WhatsApp que vai receber o relatório**
-3. **Editar Nó Buscar campanhas**:
-   - Edite "account_id" pelo id da instancia do ChatWoot.
-   - Edite "inbox_id" pelo id da caixa de entrada do disparador que voce crio no **Passo 1**.
-4. **Conectar Nós do Postgres ao Banco de Dados do ChatWoot**:
+     - **Email que vai enviar o relatório**
+3. **Conectar Nós do Postgres ao Banco de Dados do ChatWoot**:
    - Conecte todos os nós do Postgres ao banco de dados do ChatWoot, garantindo que as informações fluam corretamente entre os sistemas.
 
 ### Passo 5: Editar o Workflow reset-limite-campanha no n8n
@@ -377,13 +371,14 @@ Agora tudo está pronto para enviar a sua campanha!
 **Envia campanha para grupos**
 - Agora suas campanhas tambem serão enviadas para grupos do whatsapp.
 
-### Versão 2.0 🌟
+### Versão 2.0 [SAAS] 🌟
 
-**Envio de Mensagens Dinâmicas**
-- Possibilidade de cadastrar mais de uma mensagem dentro do template para disparar de forma aleatória, evitando bloqueio do número.
+**Apenas um workflow por instancia**
+- Este workflow foi desenvolvido para funcionar de forma centralizada com toda a instância do Chatwoot, eliminando a necessidade de criar um novo fluxo no n8n para cada caixa de entrada individual.
 
-**Disparo por Múltiplos Números de WhatsApp**
-- Permitir o disparo de campanhas através de mais de um número de WhatsApp, melhorando a capacidade de gestão e distribuição das mensagens.
+- Com esse modelo SaaS, é possível disparar campanhas por todos os números conectados à plataforma de forma unificada. Basta apenas criar as caixas de entrada (SMS) desejadas no Chatwoot, configurar os respectivos disparadores e informar corretamente o Application ID, que deve ser o nome da caixa de entrada cadastrada na Evolution API.
+
+- Dessa forma, o envio de mensagens é direcionado automaticamente para o número vinculado à caixa de entrada correspondente, garantindo escalabilidade, agilidade e padronização no processo de campanhas.
 
 ### Considerações Finais 🛠️
 - Este roadmap pode ser ajustado conforme novas ideias surjam ou prioridades se alterem durante o desenvolvimento. Cada etapa visa melhorar a funcionalidade e a eficiência do disparador de campanhas, proporcionando uma experiência mais completa e eficaz aos usuários.
@@ -396,4 +391,6 @@ Quem quiser apoiar o projeto com dicas de melhorias e reportar alguma falha pode
 
 _https://chat.whatsapp.com/H2as2v9yHre8U2gjNaCWRc_
 
-Caso alguém queira contribuir de forma monetária, o chave PIX aleatoria: **a0db6d5c-625b-4846-ba9a-3e06ccc6b1d4**
+Canal do Youtube: https://www.youtube.com/@RodrigoTanci
+
+Caso alguém queira contribuir de forma monetária, o chave PIX CNPJ: **36799434000140**
