@@ -431,7 +431,7 @@ Agora tudo está pronto para enviar a sua campanha!
 ### Versão 2.1 🤖 (Já disponível)
 
 **Envia fluxo de mensagem do typebot**
-- Agora voce pode enviar fluxo de typebot ao inves de mensagem unica.
+- Agora você pode enviar fluxo de typebot ao invés de mensagem única.
 
 ### Considerações Finais 🛠️
 - Este roadmap pode ser ajustado conforme novas ideias surjam ou prioridades se alterem durante o desenvolvimento. Cada etapa visa melhorar a funcionalidade e a eficiência do disparador de campanhas, proporcionando uma experiência mais completa e eficaz aos usuários.
