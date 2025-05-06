@@ -24,7 +24,7 @@
     {
       "parameters": {
         "operation": "executeQuery",
-        "query": "UPDATE accounts\nSET limite_disparo = 100",
+        "query": "UPDATE accounts\nSET limite_disparo = 500",
         "options": {}
       },
       "id": "b9b20a59-d5ad-4983-8f97-80174ad3d0c9",
