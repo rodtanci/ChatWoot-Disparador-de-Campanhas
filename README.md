@@ -118,7 +118,7 @@ Antes de iniciar, certifique-se de que você já tem instalado:
    - Execute o seguinte comando SQL para adicionar a coluna `limite_disparo`:
      ```sql
      ALTER TABLE accounts
-     ADD COLUMN limite_disparo INTEGER NOT NULL DEFAULT 100;
+     ADD COLUMN limite_disparo INTEGER NOT NULL DEFAULT 500;
      ```
 3. **Adicionar Colunas na Tabela campaigns**:
    - Execute os seguintes comandos SQL para adicionar as colunas status_envia, enviou e falhou na tabela campaigns:
@@ -136,7 +136,8 @@ Antes de iniciar, certifique-se de que você já tem instalado:
    - Execute o seguinte comandos SQL para adicionar as coluna account_id na tabela tags:
      ```sql
      ALTER TABLE IF EXISTS public.tags
-     ADD COLUMN account_id integer;
+        ADD COLUMN account_id integer,
+        ADD COLUMN labels_id bigint;
      ```
 5. **Adicionar nova Tabela para guardar os envios que falharem**:
    - Execute o seguinte comando SQL para adicionar a tabela campaigns_failled:
@@ -165,72 +166,106 @@ Antes de iniciar, certifique-se de que você já tem instalado:
       **Função para replicar inserções:**
       
       ```sql
-      CREATE OR REPLACE FUNCTION replicate_label_to_tags()
-      RETURNS TRIGGER AS $$
+      CREATE OR REPLACE FUNCTION public.replicate_label_to_tags()
+         RETURNS trigger
+         LANGUAGE 'plpgsql'
+         COST 100
+         VOLATILE NOT LEAKPROOF
+      AS $BODY$
       BEGIN
-          -- Verifica se a etiqueta já existe para a mesma conta antes de inserir
-          IF NOT EXISTS (
-              SELECT 1 FROM public.tags 
-              WHERE name = NEW.title AND account_id = NEW.account_id
-          ) THEN
-              INSERT INTO public.tags (name, account_id)
-              VALUES (NEW.title, NEW.account_id);
-          END IF;
-      
-          RETURN NEW;
+      -- Verifica se já existe um registro em tags para este label_id
+         IF NOT EXISTS (
+         SELECT 1 
+         FROM public.tags
+         WHERE labels_id = NEW.id
+         ) THEN
+         INSERT INTO public.tags (labels_id, name, account_id)
+         VALUES (NEW.id, NEW.title, NEW.account_id);
+         END IF;
+         RETURN NEW;
       END;
-      $$ LANGUAGE plpgsql;
+      $BODY$;
+
+      ALTER FUNCTION public.replicate_label_to_tags()
+         OWNER TO postgres;
       ```
       
       **Função para replicar exclusões:**
       
       ```sql
-      CREATE OR REPLACE FUNCTION delete_labels_from_tags_and_taggings()
-      RETURNS TRIGGER AS $$
+      CREATE OR REPLACE FUNCTION public.delete_label_from_tags()
+         RETURNS trigger
+         LANGUAGE 'plpgsql'
+         COST 100
+         VOLATILE NOT LEAKPROOF
+      AS $BODY$
       BEGIN
-          -- Exclui da tabela tags
-          DELETE FROM tags WHERE id = OLD.id;
-          -- Exclui da tabela taggings
-          DELETE FROM taggings WHERE tag_id = OLD.id;
-          RETURN OLD;
+         DELETE FROM public.tags
+         WHERE labels_id = OLD.id;
+
+         RETURN OLD;
       END;
-      $$ LANGUAGE plpgsql;
+      $BODY$;
+
+      ALTER FUNCTION public.delete_label_from_tags()
+         OWNER TO postgres;
       ```
       
       **Função para replicar atualizações:**
       
       ```sql
-      CREATE OR REPLACE FUNCTION update_labels_to_tags()
-      RETURNS TRIGGER AS $$
+      CREATE OR REPLACE FUNCTION public.update_label_to_tag()
+          RETURNS trigger
+          LANGUAGE 'plpgsql'
+          COST 100
+          VOLATILE NOT LEAKPROOF
+      AS $BODY$
       BEGIN
-          UPDATE tags
-          SET name = NEW.title
-          WHERE id = NEW.id;
+          UPDATE public.tags
+          SET name = NEW.title,
+              account_id = NEW.account_id  -- opcional, se quiser atualizar também a conta
+          WHERE labels_id = NEW.id;
+          
           RETURN NEW;
       END;
-      $$ LANGUAGE plpgsql;
+      $BODY$;
+      
+      ALTER FUNCTION public.update_label_to_tag()
+          OWNER TO postgres;
       ```
 
-6. **Criação dos Indices**
+6. **Criação dos Indices e Triger**
 
    
       **Esse índice garante que não possa haver duas tags com o mesmo nome (name) dentro da mesma conta (account_id). Ou seja, é uma restrição de unicidade por conta, impedindo duplicações acidentais.**
       
       ```sql
-      CREATE UNIQUE INDEX IF NOT EXISTS tags_unique_name_per_account
-        ON public.tags USING btree
-        (name COLLATE pg_catalog."default" ASC NULLS LAST, account_id ASC NULLS LAST)
-        TABLESPACE pg_default;
+      CREATE UNIQUE INDEX IF NOT EXISTS index_tags_on_name_account
+          ON public.tags USING btree
+          (name COLLATE pg_catalog."default" ASC NULLS LAST, account_id ASC NULLS LAST)
+          TABLESPACE pg_default;
       ```
       
-      **Sempre que uma nova etiqueta (label) for criada no Chatwoot, esse gatilho automaticamente chama uma função que copia ou sincroniza essa etiqueta com a tabela de tags, que provavelmente é usada de forma mais genérica no sistema (como busca, filtros, etc.).**
+      **Sempre que uma nova etiqueta (label) for criada, deletada ou removida no Chatwoot, esse gatilho automaticamente chama uma função que copia ou sincroniza essa etiqueta com a tabela de tags, que provavelmente é usada de forma mais genérica no sistema (como busca, filtros, etc.).**
       
       ```sql
+      CREATE OR REPLACE TRIGGER trg_delete_label_from_tags
+          AFTER DELETE
+          ON public.labels
+          FOR EACH ROW
+          EXECUTE FUNCTION public.delete_label_from_tags();
+
       CREATE OR REPLACE TRIGGER trigger_replicate_label_to_tags
-        AFTER INSERT
-        ON public.labels
-        FOR EACH ROW
-        EXECUTE FUNCTION public.replicate_label_to_tags();
+          AFTER INSERT
+          ON public.labels
+          FOR EACH ROW
+          EXECUTE FUNCTION public.replicate_label_to_tags();
+      
+      CREATE OR REPLACE TRIGGER trigger_update_label_to_tag
+          AFTER UPDATE 
+          ON public.labels
+          FOR EACH ROW
+          EXECUTE FUNCTION public.update_label_to_tag();
       ```
 
 ---
@@ -251,14 +286,18 @@ Antes de iniciar, certifique-se de que você já tem instalado:
 ### Passo 4: Editar o Workflow Disparador no n8n
 
 1. **Acesse o Workflow Disparador**: No n8n, abra o workflow Disparador que você importou.
-2. **Editar Nó Info_Base**:
+2. **Editar o primeiro nó do postgres Buscar campanhas**
+   - Alterar na linha "select * from campaigns c  where campaign_type = 1  and status_envia = 0 and account_id = 1"
+   - altere o valor e account_id para o ID da conta do chatwoot.
+4. **Editar Nó Info_Base**:
    - Preencha os seguintes campos com suas informações:
      - **URL do ChatWoot**
      - **URL da Evolution API**
+     - **URL do view Typebot**
      - **Token de acesso da conta do ChatWoot**
      - **Global API KEY da Evolution API**
      - **Email que vai enviar o relatório**
-3. **Conectar Nós do Postgres ao Banco de Dados do ChatWoot**:
+5. **Conectar Nós do Postgres ao Banco de Dados do ChatWoot**:
    - Conecte todos os nós do Postgres ao banco de dados do ChatWoot, garantindo que as informações fluam corretamente entre os sistemas.
 
 ### Passo 5: Editar o Workflow reset-limite-campanha no n8n
@@ -266,6 +305,8 @@ Antes de iniciar, certifique-se de que você já tem instalado:
 1. **Acesse o Workflow reset-limite-campanha**: No n8n, abra o workflow reset-limite-campanha que você importou.
 2. **Conectar Nós do Postgres ao Banco de Dados do ChatWoot**:
    - Conecte todos os nós do Postgres ao banco de dados do ChatWoot, garantindo que as informações sejam atualizadas corretamente para resetar o limite de disparo diário.
+   - Se desejar altere o limite de envio diario dentro do nó do postgres.
+   - Recomendação para não sobrecarregar o worflow 500 disparos seguidos.
 
 ---
 
