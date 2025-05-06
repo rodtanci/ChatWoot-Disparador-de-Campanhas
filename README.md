@@ -348,6 +348,13 @@ Você  já viu esse vídeo??_
 
 _&vid=https://evolution-api.com/files/video.mp4_"
 
+### Exemplo de uso typebot:
+
+"&typebot=id_da_url_do_fluxo_do_typebot"
+
+Exemplo url: https://chatbotapi.cubochat.com.br/fluxotypebot
+Usar: fluxotypebot
+
 4. **Selecionar Caixa de Entrada**: No campo "Selecionar caixa de entrada", selecione a caixa de SMS que você criou no início do tutorial.
 5. **Público**: Selecione a etiqueta que está atribuída aos contatos que quer disparar a campanha.
 6. **Horário Agendado**: Selecione o dia e a hora que quer disparar a campanha. Caso queira disparar a campanha na mesma hora, selecione a data e a hora atual.
@@ -420,6 +427,11 @@ Agora tudo está pronto para enviar a sua campanha!
 - Com esse modelo SaaS, é possível disparar campanhas por todos os números conectados à plataforma de forma unificada. Basta apenas criar as caixas de entrada (SMS) desejadas no Chatwoot, configurar os respectivos disparadores e informar corretamente o Application ID, que deve ser o nome da caixa de entrada cadastrada na Evolution API.
 
 - Dessa forma, o envio de mensagens é direcionado automaticamente para o número vinculado à caixa de entrada correspondente, garantindo escalabilidade, agilidade e padronização no processo de campanhas.
+
+### Versão 2.1 🤖 (Já disponível)
+
+**Envia fluxo de mensagem do typebot**
+- Agora suas campanhas tambem serão enviadas para grupos do whatsapp.
 
 ### Considerações Finais 🛠️
 - Este roadmap pode ser ajustado conforme novas ideias surjam ou prioridades se alterem durante o desenvolvimento. Cada etapa visa melhorar a funcionalidade e a eficiência do disparador de campanhas, proporcionando uma experiência mais completa e eficaz aos usuários.
