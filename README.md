@@ -240,10 +240,17 @@ Antes de iniciar, certifique-se de que você já tem instalado:
       **Esse índice garante que não possa haver duas tags com o mesmo nome (name) dentro da mesma conta (account_id). Ou seja, é uma restrição de unicidade por conta, impedindo duplicações acidentais.**
       
       ```sql
+      -- 1) Remova o índice antigo (se existir)
+      DROP INDEX IF EXISTS public.index_tags_on_name;
+      
+      -- 2) Crie o novo índice único incluindo account_id
       CREATE UNIQUE INDEX IF NOT EXISTS index_tags_on_name_account
-          ON public.tags USING btree
-          (name COLLATE pg_catalog."default" ASC NULLS LAST, account_id ASC NULLS LAST)
-          TABLESPACE pg_default;
+        ON public.tags
+        USING btree (
+          name COLLATE pg_catalog."default" ASC NULLS LAST,
+          account_id ASC NULLS LAST
+        )
+        TABLESPACE pg_default;
       ```
       
       **Sempre que uma nova etiqueta (label) for criada, deletada ou removida no Chatwoot, esse gatilho automaticamente chama uma função que copia ou sincroniza essa etiqueta com a tabela de tags, que provavelmente é usada de forma mais genérica no sistema (como busca, filtros, etc.).**
