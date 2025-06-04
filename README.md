@@ -132,14 +132,7 @@ Antes de iniciar, certifique-se de que você já tem instalado:
      ALTER TABLE campaigns
      ADD COLUMN falhou INTEGER NOT NULL DEFAULT 0;
      ```
-4. **Adicionar Coluna na Tabela tags**:
-   - Execute o seguinte comandos SQL para adicionar as coluna account_id na tabela tags:
-     ```sql
-     ALTER TABLE IF EXISTS public.tags
-        ADD COLUMN account_id integer,
-        ADD COLUMN labels_id bigint;
-     ```
-5. **Adicionar nova Tabela para guardar os envios que falharem**:
+4. **Adicionar nova Tabela para guardar os envios que falharem**:
    - Execute o seguinte comando SQL para adicionar a tabela campaigns_failled:
      ```sql
       -- Cria a sequência
